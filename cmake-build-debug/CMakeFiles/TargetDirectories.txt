@@ -1,0 +1,3 @@
+/home/vlad/CVUT/ft_push_swap/cmake-build-debug/CMakeFiles/ft_push_swap.dir
+/home/vlad/CVUT/ft_push_swap/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/vlad/CVUT/ft_push_swap/cmake-build-debug/CMakeFiles/rebuild_cache.dir
