@@ -1,14 +1,4 @@
-#include "ft_algorithm.h"
-
-
-int find_mid_index(t_stack *stack) {
-    int size;
-
-    size = ft_lstsize(stack);
-    if (size % 2 == 0)
-        return size / 2;
-    return size / 2 + 1;
-}
+#include "../ft_algorithm/ft_algorithm.h"
 
 bool in_first_half_a(t_stack *node, t_stack *stack_a) {
     return node->index < find_mid_index(stack_a);

@@ -3,24 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vzhadan <vzhadan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mnurlybe <mnurlybe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 16:20:30 by vzhadan           #+#    #+#             */
-/*   Updated: 2023/01/28 14:45:34 by vzhadan          ###   ########.fr       */
+/*   Created: 2023/01/17 09:45:13 by mnurlybe          #+#    #+#             */
+/*   Updated: 2023/04/29 19:13:13 by mnurlybe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-/*
- *	Finds len of string pointed by {s}
-*/
 size_t	ft_strlen(const char *s)
 {
-	unsigned int	len;
+	size_t	count;
 
-	len = 0;
-	while (*(s + len))
-		len++;
-	return (len);
+	count = 0;
+	while (s[count] != '\0')
+		count++;
+	return (count);
 }

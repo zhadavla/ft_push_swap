@@ -1,4 +1,4 @@
-#include "stack.h"
+#include "../push_swap.h"
 
 /**
  * reverse two upper elements in stack
@@ -42,7 +42,7 @@ void stack_push_to(t_stack **stack_from, t_stack **stack_to) {
 
     ft_lstadd_front(stack_to, to_push);
 
-    if ((*stack_from)->is_a)
+    if ((*stack_to)->is_a)
         write(1, "pa\n", 3);
     else
         write(1, "pb\n", 3);
@@ -55,7 +55,7 @@ void stack_push_to(t_stack **stack_from, t_stack **stack_to) {
  * @param stack
  * @param needs_to_print
  */
-void stack_rotate(t_stack **stack, int needs_to_print) {
+void rotate_stack(t_stack **stack, int needs_to_print) {
     t_stack *tmp;
 
     if (*stack == NULL || (*stack)->next == NULL)
@@ -79,7 +79,7 @@ void stack_rotate(t_stack **stack, int needs_to_print) {
  * @param stack
  * @param needs_to_print
  */
-void stack_reverse_rotate(t_stack **stack, int needs_to_print) {
+void reverse_rotate_stack(t_stack **stack, int needs_to_print) {
     t_stack *tmp;
     t_stack *last_el_in_stack;
 
