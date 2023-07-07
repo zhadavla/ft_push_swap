@@ -1,51 +1,36 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   stack_oper_adds.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mnurlybe <mnurlybe@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/18 21:25:18 by mnurlybe          #+#    #+#             */
-/*   Updated: 2023/05/18 21:36:56 by mnurlybe         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+
 
 #include "../push_swap.h"
 
-/* based on the input, this funtion decides 
-which direction to use for rotation of the stack ra or rra */
-void	stack_rotation(int index, t_stack **stack)
+void	stack_rotate(int index, t_stack **stack)
 {
 	if (index >= find_mid_index(*stack))
 	{
 		index = ft_lstsize(*stack) - index;
 		while (index-- != 0)
 			rra(stack);
+		return;
 	}
-	else if (index < find_mid_index(*stack))
-	{
-		while (index-- != 0)
-			ra(stack);
-	}
+	while (index-- != 0)
+		ra(stack);
 }
 
-/* this function rotates (or reverse rotates) 
-stack_a until the min value is on top */
+// rotates stack_a until the min value is on top 
 void	finalize_stack_a(t_stack **stack_a)
 {
 	int		index;
 	int		min;
-	t_stack	*elem;
+	t_stack	*node;
 
-	elem = *stack_a;
+	node = *stack_a;
 	min = find_min_value(*stack_a);
 	if ((*stack_a)->data == min)
 		return ;
 	index = 0;
-	while ((elem)->data != min)
+	while ((node)->data != min)
 	{
 		index++;
-		elem = (elem)->next;
+		node = (node)->next;
 	}
-	stack_rotation(index, stack_a);
+	stack_rotate(index, stack_a);
 }

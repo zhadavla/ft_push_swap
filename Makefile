@@ -3,82 +3,66 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mnurlybe <mnurlybe@student.42.fr>          +#+  +:+       +#+         #
+#    By: vzhadan <vzhadan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/04/29 12:47:34 by mnurlybe          #+#    #+#              #
-#    Updated: 2023/05/29 20:30:28 by mnurlybe         ###   ########.fr        #
+#    Created: 2023/07/06 18:55:55 by vzhadan           #+#    #+#              #
+#    Updated: 2023/07/06 18:55:56 by vzhadan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-BONUS = checker
+SRC_DIR = srcs
+STACK_DIR = $(SRC_DIR)/stack
+ALGORITHM_DIR = $(SRC_DIR)/algorithm
+UTILS_DIR = $(SRC_DIR)/utils
+LIBFT_DIR = $(SRC_DIR)/libft
 
-MAIN_SOURSCES = srcs/main.c
-
-MANDATORY_SOURCES = srcs/libft/ft_atoi.c \
-	srcs/stack/one_stack_operations.c \
-	srcs/libft/ft_split.c \
-	srcs/libft/ft_strlen.c \
-	srcs/algorithm/bool_utils.c \
-	srcs/libft/ft_lstnew.c \
-	srcs/libft/ft_lstadd_back.c \
-	srcs/libft/ft_lstadd_front.c \
-	srcs/libft/ft_lstsize.c \
-	srcs/ft_stack/fill_stack_a.c \
-	srcs/error_main.c \
-	srcs/error_checks.c \
-	srcs/free_memory.c \
-	srcs/stack/stack_operations_a.c \
-	srcs/stack/stack_operations_b.c \
-	srcs/stack/two_stacks_operations.c \
-	srcs/stack/stack_suboperations.c \
-	srcs/algorithm/small_sort.c \
-	srcs/algorithm/min_max_value.c \
-	srcs/algorithm/get_index.c \
-	srcs/stack/stack_oper_adds.c \
-	srcs/algorithm/sort.c \
-	srcs/algorithm/move_b_to_a.c \
-	srcs/algorithm/move_a_to_b.c \
-	srcs/algorithm/score.c \
-	srcs/utils/array_to_stack.c \
-
-BONUS_SOURCES =	srcs/libft/get_next_line.c \
-	srcs/libft/get_next_line_utils.c \
-	bonus/checker.c \
-	bonus/instructions_bonus_a.c \
-	bonus/instructions_bonus_b.c \
-	bonus/instructions_bonus_ab.c \
-	bonus/perform_instructions.c
+MAIN_SOURCE = $(SRC_DIR)/main.c
+STACK_SOURCES = $(wildcard $(STACK_DIR)/*.c)
+ALGORITHM_SOURCES = $(wildcard $(ALGORITHM_DIR)/*.c)
+UTILS_SOURCES = $(wildcard $(UTILS_DIR)/*.c)
+LIBFT_SOURCES = $(wildcard $(LIBFT_DIR)/*.c)
 
 CFLAGS = -Wall -Wextra -Werror
-
 MY_HEADER = ./includes/
 
-MAIN_OBJECTS = $(MAIN_SOURSCES:.c=.o)
-MAND_OBJECTS = $(MANDATORY_SOURCES:.c=.o)
-BONUS_OBJECTS = $(BONUS_SOURCES:.c=.o)
+OBJ_DIR = obj
+OBJ_STACK = $(addprefix $(OBJ_DIR)/,$(notdir $(STACK_SOURCES:.c=.o)))
+OBJ_ALGORITHM = $(addprefix $(OBJ_DIR)/,$(notdir $(ALGORITHM_SOURCES:.c=.o)))
+OBJ_UTILS = $(addprefix $(OBJ_DIR)/,$(notdir $(UTILS_SOURCES:.c=.o)))
+OBJ_LIBFT = $(addprefix $(OBJ_DIR)/,$(notdir $(LIBFT_SOURCES:.c=.o)))
+OBJ_MAIN = $(OBJ_DIR)/main.o
 
-.c.o:
-	gcc $(CFLAGS) -c -I $(MY_HEADER) $< -o ${<:.c=.o}
+.PHONY: all clean fclean re
 
-$(NAME): $(MAND_OBJECTS) $(MAIN_OBJECTS)
-	cc $(CFLAGS) -o $(NAME) $(MAND_OBJECTS) $(MAIN_OBJECTS)
+all: $(NAME)
 
-$(BONUS): $(MAND_OBJECTS) $(BONUS_OBJECTS)
-	cc $(CFLAGS) -o $(BONUS) $(MAND_OBJECTS) $(BONUS_OBJECTS)
+$(OBJ_DIR)/%.o: $(STACK_DIR)/%.c | $(OBJ_DIR)
+	gcc $(CFLAGS) -c -I $(MY_HEADER) $< -o $@
 
+$(OBJ_DIR)/%.o: $(ALGORITHM_DIR)/%.c | $(OBJ_DIR)
+	gcc $(CFLAGS) -c -I $(MY_HEADER) $< -o $@
 
-all: $(NAME) $(BONUS)
+$(OBJ_DIR)/%.o: $(UTILS_DIR)/%.c | $(OBJ_DIR)
+	gcc $(CFLAGS) -c -I $(MY_HEADER) $< -o $@
 
-bonus: $(BONUS)
+$(OBJ_DIR)/%.o: $(LIBFT_DIR)/%.c | $(OBJ_DIR)
+	gcc $(CFLAGS) -c -I $(MY_HEADER) $< -o $@
+
+$(OBJ_DIR)/main.o: $(MAIN_SOURCE) | $(OBJ_DIR)
+	gcc $(CFLAGS) -c -I $(MY_HEADER) $< -o $@
+
+$(NAME): $(OBJ_STACK) $(OBJ_ALGORITHM) $(OBJ_UTILS) $(OBJ_LIBFT) $(OBJ_MAIN)
+	cc $(CFLAGS) -o $(NAME) $(OBJ_STACK) $(OBJ_ALGORITHM) $(OBJ_UTILS) $(OBJ_LIBFT) $(OBJ_MAIN)
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
 clean:
-	rm -f $(MAIN_OBJECTS) $(MAND_OBJECTS) $(BONUS_OBJECTS)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
-	rm -f $(NAME) $(BONUS)
+	rm -f $(NAME)
 
 re: fclean all
-
-.PHONY: clean fclean re

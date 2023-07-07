@@ -37,11 +37,13 @@ void stack_push_to(t_stack **stack_from, t_stack **stack_to) {
         return;
 
     to_push = *stack_from;
-    to_push->is_a = false;
+    (*stack_from)->is_a = !(*stack_from)->is_a;
     *stack_from = (*stack_from)->next;
 
-    ft_lstadd_front(stack_to, to_push);
-
+    if (!*stack_to)
+        ft_lstadd_back(stack_to, to_push);
+    else
+        ft_lstadd_front(stack_to, to_push);
     if ((*stack_to)->is_a)
         write(1, "pa\n", 3);
     else
@@ -66,7 +68,7 @@ void rotate_stack(t_stack **stack, int needs_to_print) {
     ft_lstadd_back(stack, tmp);
 
     if (needs_to_print){
-        if ((*stack)->is_a)
+        if (tmp->is_a)
             write(1, "ra\n", 3);
         else
             write(1, "rb\n", 3);
