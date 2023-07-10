@@ -28,7 +28,7 @@ void    sort_three(t_stack **stack_a)
         }
         else
         {
-            if (((*stack_a)->next->data) == find_min_value(*stack_a))
+            if ((*stack_a)->next->data == find_min_value(*stack_a))
                 sa(stack_a);
             else 
                 rra(stack_a);

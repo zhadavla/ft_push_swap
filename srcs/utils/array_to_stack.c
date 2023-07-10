@@ -45,17 +45,6 @@ t_stack *array_to_stack(const int *array, int len, bool is_a) {
     return top;
 }
 
-int *stack_to_array(t_stack *stack, int len) {
-    int *array = (int *) malloc(sizeof(int) * len);
-
-    for (int i = 0; i < len; i++) {
-        array[i] = stack->data;
-        stack = stack->next;
-    }
-
-    return array;
-}
-
 t_stack *get_input(int argc, char **argv) {
     int *array;
     t_stack *stack;

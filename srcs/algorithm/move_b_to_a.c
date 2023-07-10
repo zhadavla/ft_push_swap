@@ -19,21 +19,6 @@ int	get_future_index_in_a(int num, t_stack *stack_a)
 	return (future_index);
 }
 
-void get_weight_ba(t_stack **stack_a, t_stack **stack_b)
-{
-	t_stack *elem;
-	int future_index;
-
-	elem = *stack_b;
-	while (elem != NULL)
-	{
-		future_index = get_future_index_in_a(elem->data, *stack_a);
-		elem->weight = calculate_weight(elem, *stack_b, *stack_a, future_index);
-		if (elem->weight == 1)
-			break ;
-		elem = elem->next;
-	}
-}
 
 void	move_b_to_a(t_stack **stack_b, t_stack **stack_a, t_stack *elem)
 {

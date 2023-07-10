@@ -15,23 +15,23 @@ void    ft_free_arr(char **arr)
     *arr = NULL;
 }
 
-void    ft_free_list(t_stack **stack)
+void    free_stack(t_stack **stack)
 {
-    t_stack *el;
+    t_stack *node;
 
     if (!stack)
         return;
     while (*stack)
     {
-        el = (*stack)->next;
+        node = (*stack)->next;
         (*stack)->data = 0;
         free(*stack);
-        *stack = el;
+        *stack = node;
     }
 }
 
 void    ft_free(t_stack **stack_a, t_stack **stack_b)
 {
-    ft_free_list(stack_a);
-    ft_free_list(stack_b);
+    free_stack(stack_a);
+    free_stack(stack_b);
 }

@@ -85,6 +85,8 @@ void reverse_rotate_stack(t_stack **stack, int needs_to_print) {
     t_stack *tmp;
     t_stack *last_el_in_stack;
 
+    if (*stack == NULL || (*stack)->next == NULL)
+        return ;
     tmp = *stack;
 
     while (tmp->next->next != NULL)

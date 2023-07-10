@@ -6,7 +6,7 @@
 /*   By: vzhadan <vzhadan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 16:58:40 by vzhadan           #+#    #+#             */
-/*   Updated: 2023/07/06 21:19:49 by vzhadan          ###   ########.fr       */
+/*   Updated: 2023/07/08 17:53:23 by vzhadan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void sort(t_stack **stack_a, t_stack **stack_b)
 	{		
 		init_stack(*stack_a);
 		init_stack(*stack_b);
-		get_weight_ba(stack_a, stack_b);
+		assign_weights(stack_a, stack_b);
 		cheapest_element = find_cheapest_elem(*stack_b);
 		move_b_to_a(stack_b, stack_a, cheapest_element);
 	}

@@ -1,8 +1,6 @@
-
-
 #include "../push_swap.h"
 
-void	stack_rotate(int index, t_stack **stack)
+void	move_min_to_top(int index, t_stack **stack)
 {
 	if (index >= find_mid_index(*stack))
 	{
@@ -32,5 +30,5 @@ void	finalize_stack_a(t_stack **stack_a)
 		index++;
 		node = (node)->next;
 	}
-	stack_rotate(index, stack_a);
+	move_min_to_top(index, stack_a);
 }

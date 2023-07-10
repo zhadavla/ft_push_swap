@@ -6,7 +6,7 @@
 #    By: vzhadan <vzhadan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/06 18:55:55 by vzhadan           #+#    #+#              #
-#    Updated: 2023/07/06 18:55:56 by vzhadan          ###   ########.fr        #
+#    Updated: 2023/07/08 19:29:19 by vzhadan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,23 +38,37 @@ OBJ_MAIN = $(OBJ_DIR)/main.o
 
 all: $(NAME)
 
+define PRINT_PROGRESS
+	@printf "\r\033[K\033[0;33mBuilding objects: $1 \033[0m[$2]"
+endef
+
+define PRINT_SUCCESS
+	@printf "\r\033[K\033[0;32mAll objects built successfully!\033[0m\n"
+endef
+
 $(OBJ_DIR)/%.o: $(STACK_DIR)/%.c | $(OBJ_DIR)
-	gcc $(CFLAGS) -c -I $(MY_HEADER) $< -o $@
+	@$(call PRINT_PROGRESS,$(STACK_DIR),$2)
+	@gcc $(CFLAGS) -c -I $(MY_HEADER) $< -o $@
 
 $(OBJ_DIR)/%.o: $(ALGORITHM_DIR)/%.c | $(OBJ_DIR)
-	gcc $(CFLAGS) -c -I $(MY_HEADER) $< -o $@
+	@$(call PRINT_PROGRESS,$(ALGORITHM_DIR),$2)
+	@gcc $(CFLAGS) -c -I $(MY_HEADER) $< -o $@
 
 $(OBJ_DIR)/%.o: $(UTILS_DIR)/%.c | $(OBJ_DIR)
-	gcc $(CFLAGS) -c -I $(MY_HEADER) $< -o $@
+	@$(call PRINT_PROGRESS,$(UTILS_DIR),$2)
+	@gcc $(CFLAGS) -c -I $(MY_HEADER) $< -o $@
 
 $(OBJ_DIR)/%.o: $(LIBFT_DIR)/%.c | $(OBJ_DIR)
-	gcc $(CFLAGS) -c -I $(MY_HEADER) $< -o $@
+	@$(call PRINT_PROGRESS,$(LIBFT_DIR),$2)
+	@gcc $(CFLAGS) -c -I $(MY_HEADER) $< -o $@
 
 $(OBJ_DIR)/main.o: $(MAIN_SOURCE) | $(OBJ_DIR)
-	gcc $(CFLAGS) -c -I $(MY_HEADER) $< -o $@
+	@$(call PRINT_PROGRESS,$(MAIN_SOURCE),$2)
+	@gcc $(CFLAGS) -c -I $(MY_HEADER) $< -o $@
 
 $(NAME): $(OBJ_STACK) $(OBJ_ALGORITHM) $(OBJ_UTILS) $(OBJ_LIBFT) $(OBJ_MAIN)
-	cc $(CFLAGS) -o $(NAME) $(OBJ_STACK) $(OBJ_ALGORITHM) $(OBJ_UTILS) $(OBJ_LIBFT) $(OBJ_MAIN)
+	@$(call PRINT_SUCCESS)
+	@cc $(CFLAGS) -o $(NAME) $(OBJ_STACK) $(OBJ_ALGORITHM) $(OBJ_UTILS) $(OBJ_LIBFT) $(OBJ_MAIN)
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)

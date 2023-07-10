@@ -1,19 +1,12 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mnurlybe <mnurlybe@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/23 18:17:41 by mnurlybe          #+#    #+#             */
-/*   Updated: 2023/05/03 20:18:08 by mnurlybe         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "libft.h"
 
-#include "../push_swap.h"
-
+/*
+ *	 Adds the node ’new’ at the beginning of the list.
+*/
 void	ft_lstadd_front(t_stack **lst, t_stack *new)
 {
+	if (!lst || !new)
+		return ;
 	new->next = *lst;
 	*lst = new;
 }

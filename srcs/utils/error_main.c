@@ -1,10 +1,6 @@
 #include "../push_swap.h"
 
-/* In case of error, it must display "Error" followed by a ’\n’ on the standard error.
-Errors include for example: some arguments aren’t integers, some arguments are
-bigger than an integer and/or there are duplicates. */
-
-int temp_error_check(char **temp)
+int temp_error(char **temp)
 {
     int i;
     int size;
@@ -15,16 +11,16 @@ int temp_error_check(char **temp)
         size++;
     while (temp[i] != 0)
     {
-        if (digit_check(temp[i]) == 1 || range_check(temp[i]) == 1)
-            return (1);
+        if (digit_check(temp[i]) || range_check(temp[i]))
+            return (true);
         i++;
     }
-    if (dup_check(size, temp, 2) == 1)
-        return (1);
-    return (0);
+    if (duplicite_check(size, temp, 2))
+        return (true);
+    return (false);
 }
 
-int argv_error_check(int argc, char **argv)
+int is_argv_error(int argc, char **argv)
 {
     int i;
     
@@ -32,28 +28,28 @@ int argv_error_check(int argc, char **argv)
     while (i < argc)
     {
         if (digit_check(argv[i]) == 1 || range_check(argv[i]) == 1)
-            return (1);
+            return (true);
         i++;
     }
-    if (dup_check(argc, argv, 1) == 1)
-        return (1);
-    return (0);
+    if (duplicite_check(argc, argv, 1) == 1)
+        return (true);
+    return (false);
 }
 
-int error_check(int argc, char **argv)
+bool error(int argc, char **argv)
 {
     char **temp;
-    int flag;
+    bool is_error;
     
-    flag = 0;
+    
     if (argc == 2)
     {
         temp = ft_split(argv[1], ' '); 
-        flag = temp_error_check(temp);
+        is_error = temp_error(temp);
         ft_free_arr(temp);
         free(temp);
+        return (is_error);
     }
     else
-        flag = argv_error_check(argc, argv);
-    return (flag);
+        return (is_argv_error(argc, argv));
 }
