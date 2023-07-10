@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vzhadan <vzhadan@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/10 14:02:42 by vzhadan           #+#    #+#             */
+/*   Updated: 2023/07/10 14:02:44 by vzhadan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 int	ft_atoi(const char *nptr)
 {
-	int		i;
-	int		sign;
-	int		res;
+	int	i;
+	int	sign;
+	int	res;
 
 	i = 0;
 	sign = 1;
@@ -25,9 +37,9 @@ int	ft_atoi(const char *nptr)
 
 long	ft_atoi_long(const char *nptr)
 {
-	int			i;
-	long		sign;
-	long		res;
+	int		i;
+	long	sign;
+	long	res;
 
 	i = 0;
 	sign = 1;

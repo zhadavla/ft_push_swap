@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_oper_adds.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vzhadan <vzhadan@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/10 14:04:26 by vzhadan           #+#    #+#             */
+/*   Updated: 2023/07/10 14:04:27 by vzhadan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 void	move_min_to_top(int index, t_stack **stack)
@@ -7,13 +19,13 @@ void	move_min_to_top(int index, t_stack **stack)
 		index = ft_lstsize(*stack) - index;
 		while (index-- != 0)
 			rra(stack);
-		return;
+		return ;
 	}
 	while (index-- != 0)
 		ra(stack);
 }
 
-// rotates stack_a until the min value is on top 
+// rotates stack_a until the min value is on top
 void	finalize_stack_a(t_stack **stack_a)
 {
 	int		index;

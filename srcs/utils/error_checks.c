@@ -1,47 +1,60 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_checks.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vzhadan <vzhadan@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/10 14:04:56 by vzhadan           #+#    #+#             */
+/*   Updated: 2023/07/10 14:15:28 by vzhadan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-bool digit_check(char *str)
+BOOL	digit_check(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if ((str[i] == '-' || str[i] == '+') && str[i+1] == '\0')
-        return (true);
-    while (str[i] != 0)
-    {
-        if (!((str[i] >= '0' && str[i] <= '9') || str[i] == '-' || str[i] == '+'))
-            return (true);
-        i++;
-    }
-    return (false);
+	i = 0;
+	if ((str[i] == '-' || str[i] == '+') && str[i + 1] == '\0')
+		return (TRUE);
+	while (str[i] != 0)
+	{
+		if (!((str[i] >= '0' && str[i] <= '9') || str[i] == '-'
+				|| str[i] == '+'))
+			return (TRUE);
+		i++;
+	}
+	return (FALSE);
 }
 
-bool duplicite_check(int argc, char **str, int flag)
+BOOL	duplicite_check(int argc, char **str, int flag)
 {
-    int i;
-    int j;
-    
-    if (flag == 2) 
-        i = 0;
-    else if (flag == 1)
-        i = 1;
-    while (i < argc)
-    {
-        j = i + 1;
-        while (j != argc)
-        {
-            if ((ft_atoi(str[i]) == ft_atoi(str[j])))
-                return (true);
-            j++;
-        }
-        i++;
-    }
-    return (false);
+	int	i;
+	int	j;
+
+	if (flag == 2)
+		i = 0;
+	else if (flag == 1)
+		i = 1;
+	while (i < argc)
+	{
+		j = i + 1;
+		while (j != argc)
+		{
+			if ((ft_atoi(str[i]) == ft_atoi(str[j])))
+				return (TRUE);
+			j++;
+		}
+		i++;
+	}
+	return (FALSE);
 }
 
-int range_check(char *str)
+int	range_check(char *str)
 {
-    if (!(ft_atoi_long(str) >= -2147483648 && ft_atoi_long(str) <= 2147483647))
-        return (1);
-    return (0);
+	if (!(ft_atoi_long(str) >= -2147483648 && ft_atoi_long(str) <= 2147483647))
+		return (1);
+	return (0);
 }

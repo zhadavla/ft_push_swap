@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vzhadan <vzhadan@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/10 14:03:00 by vzhadan           #+#    #+#             */
+/*   Updated: 2023/07/10 14:31:26 by vzhadan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 static int	count_words(const char *str, char c)
@@ -36,8 +48,8 @@ static char	*word_dup(const char *str, int start, int finish)
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	i;
-	size_t	j;
+	int		i;
+	int		j;
 	int		index;
 	char	**split;
 
