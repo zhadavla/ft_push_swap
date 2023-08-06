@@ -6,13 +6,12 @@
 /*   By: vzhadan <vzhadan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 14:05:10 by vzhadan           #+#    #+#             */
-/*   Updated: 2023/07/10 14:05:11 by vzhadan          ###   ########.fr       */
+/*   Updated: 2023/08/06 16:27:19 by vzhadan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// main function receives argv argument
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;

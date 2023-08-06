@@ -6,7 +6,7 @@
 /*   By: vzhadan <vzhadan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 14:04:53 by vzhadan           #+#    #+#             */
-/*   Updated: 2023/07/10 14:15:15 by vzhadan          ###   ########.fr       */
+/*   Updated: 2023/08/06 17:09:46 by vzhadan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,42 @@ t_stack	*array_to_stack(const int *array, int len, BOOL is_a)
 	return (top);
 }
 
+int	*split_to_ints(char **str_splited, int len)
+{
+	int	*ar;
+	int	i;
+
+	ar = (int *)malloc(sizeof(*ar) * len);
+	i = 0;
+	while (i < len)
+	{
+		ar[i] = ft_atoi(str_splited[i]);
+		i++;
+	}
+	return (ar);
+}
+
 t_stack	*get_input(int argc, char **argv)
 {
 	int		*array;
+	char	**splitted;
 	t_stack	*stack;
+	int		len;
 
-	array = chars_to_ints(argv, argc);
-	stack = array_to_stack(array, argc - 1, TRUE);
+	if (argc == 2)
+	{
+		splitted = ft_split(argv[1], ' ');
+		len = 0;
+		while (splitted[len])
+			len++;
+		array = split_to_ints(splitted, len);
+	}
+	else
+		array = chars_to_ints(argv, argc);
+	if (argc == 2)
+		stack = array_to_stack(array, len, TRUE);
+	else
+		stack = array_to_stack(array, argc - 1, TRUE);
 	free(array);
 	return (stack);
 }
