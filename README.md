@@ -10,4 +10,7 @@ that sorts the integers received as arguments.
 
 # Easy? We’ll see...
 
-I've just used an algorithm described in [this guide](https://medium.com/@ayogun/push-swap-c1f5d2d41e97). But if you have at least one week to think about the project, you'll invent your own algorithm and it would be much more fun. 
+# Sources:
+
+- I've just used an algorithm described in [this guide](https://medium.com/@ayogun/push-swap-c1f5d2d41e97). But if you have at least one week to think about the project, you'll invent your own algorithm and it would be much more fun.
+- To test the algorithm I've used [that visualizer](https://github.com/o-reo/push_swap_visualizer)
